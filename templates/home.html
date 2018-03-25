@@ -1,0 +1,25 @@
+{% extends base.html %}
+
+{% block main %}
+<div>Current user: {{ current_user }}</div>
+<div>Secure cookie: {{ secure_cookie }}</div>
+{% if not current_user %}
+<p>Please, <a href="/sign_in">sign_in</a> or <a href="/sign_up">sign_up</a></p>
+{% end %}
+<form action="/" method="post" enctype="multipart/form-data">
+    <input type="file" accept="application/pdf" name="filename">
+    <input type="submit">
+</form>
+<table>
+    <tr>
+        <th>Username</th>
+        <th>FileName</th>
+    </tr>
+    {% for row in pdf_list %}
+        <tr>
+            <td>{{ row['username'] }}</td>
+            <td><a href="{{ row['pdf_url'] }}" target="_blank">{{ row['pdf_name'] }}</a></td>
+        </tr>
+    {% end %}
+</table>
+{% end %}
