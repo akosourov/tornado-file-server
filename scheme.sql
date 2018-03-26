@@ -1,5 +1,17 @@
+--DROP TABLE IF EXISTS user;
 CREATE TABLE IF NOT EXISTS user (
   id INTEGER NOT NULL PRIMARY KEY,
   username VARCHAR(100) NOT NULL UNIQUE,
   hashed_password VARCHAR(100) NOT NULL
+);
+
+--DROP TABLE IF EXISTS upload;
+CREATE TABLE IF NOT EXISTS upload (
+  id INTEGER NOT NULL PRIMARY KEY,
+  path VARCHAR(200) NOT NULL,
+  date_created DATETIME NOT NULL DEFAULT current_timestamp,
+  user_id INTEGER NOT NULL,
+  parent_id INTEGER,
+  FOREIGN KEY (user_id) REFERENCES user(id),
+  FOREIGN KEY (parent_id) REFERENCES upload(id)   -- png
 );

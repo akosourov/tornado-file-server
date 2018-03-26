@@ -1,0 +1,14 @@
+{% extends base.html %}
+{% block main %}
+
+{% if error %}
+<span>Error: {{ error }}</span>
+{% end %}
+
+<form action="/sign_in" method="POST">
+    Username: <input name="username" type="text"><br>
+    Password: <input name="password" type="password"><br>
+    <input type="submit">
+</form>
+
+{% end %}
